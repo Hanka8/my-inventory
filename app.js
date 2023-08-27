@@ -3,9 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const mongoose = require('mongoose');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var inventoryRoutes = require('./routes/inventoryRoutes');
 
 var app = express();
 
@@ -19,8 +19,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', inventoryRoutes);
+
+//connect the database
+
+const mongoDB = "mongodb+srv://hankamaruskevicova:myInventory123@cluster0.j93jqer.mongodb.net/my-inventory?retryWrites=true&w=majority";
+
+async function main(){
+  await mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
+}
+
+main().catch(err => console.log(err));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -36,6 +45,11 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+//listen to port 3000 by default
+app.listen(process.env.PORT || 3000, function(){
+  console.log('Server is running on port 3000');
 });
 
 module.exports = app;

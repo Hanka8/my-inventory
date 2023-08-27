@@ -1,11 +1,39 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
+  <%- include('partials/head.ejs') %>
+  <body id="index">
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <main class="main">
+      <a href="/fridge">
+        <picture>
+          <img src="/images/fridge.jpg" alt="fridge">
+        </picture>
+      </a>
+      <a href="/freezer">
+        <picture>
+          <img src="/images/freezer.png" alt="freezer">
+        </picture>
+      </a>
+      <a href="/cupboard">
+        <picture>
+          <img src="/images/cupboard.png" alt="kitchen cupboard">
+        </picture>
+      </a>
+    </main>
+
+    <form class="col-3" method="post">
+      <input type="text" name="name" placeholder="name" required>
+      <input type="number" name="quantity" placeholder="quantity" required>
+      <select name="unit" required>
+        <option value="g">g</option>
+        <option value="ml">ml</option>
+      </select>
+      <label for="freezed">freezed</label>
+      <input type="checkbox" name="freezed" id="freezed">
+      <label for="chilled">chilled</label>
+      <input type="checkbox" name="chilled" id="chilled">
+      <button type="submit">Add</button>
+    </form>
   </body>
+
 </html>

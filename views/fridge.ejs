@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<%- include('partials/head.ejs') %>
+
+    <body id="fridge">
+        <main class="container">
+        <picture class="col-1">
+            <img class="illustration" src="/images/fridge.jpg" alt="fridge">
+        </picture>
+
+        <ul class="col-2">
+            <!-- consumables appear here -->
+            <% for (consumable of consumables) { %>
+            <li>
+                <a href="/consumables/<%= consumable.id %>">
+                    <p class="consumable-name"><%= consumable.name %></p>
+                    <p class="consumable-quantity"><%= consumable.quantity ? String(consumable.quantity) : 0 %> <%= consumable.unit %></p>
+                </a>
+                <a data-doc="<%= consumable.id %>" class="trashcan">delete</a>
+            </li>
+            <% } %>
+        </ul>
+
+        </main>
+    </body>
+
+    <script>
+        const trashcans = document.querySelectorAll(".trashcan");
+
+        trashcans.forEach(trashcan => {
+            trashcan.addEventListener("click", (e) => {
+                console.log(e.target.dataset.doc);
+                const endpoint = `/fridge/${e.target.dataset.doc}`;
+
+                fetch(endpoint, {
+                    method: "DELETE"
+                })
+                    .then((response) => response.json()) // Return the response
+                    .then((data) => {
+                        window.location.href = "/fridge";
+                    })
+                    .catch(err => console.log(err));
+
+                    
+                });
+
+                
+        });
+    </script>
+
+</html>

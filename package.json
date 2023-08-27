@@ -10,7 +10,10 @@
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
+    "express-async-handler": "^1.2.0",
     "http-errors": "~1.6.3",
+    "mongodb": "^5.8.1",
+    "mongoose": "^7.4.5",
     "morgan": "~1.9.1"
   }
 }
