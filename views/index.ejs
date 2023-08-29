@@ -2,38 +2,142 @@
 <html>
   <%- include('partials/head.ejs') %>
   <body id="index">
-    <h1><%= title %></h1>
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">My food</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" href="#first">Storages</a>
+          <a class="nav-link active" href="#second">All food</a>
+          <a class="nav-link active" href="#third">Recipes</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+    <section class="index-section" id="first">
+    <h1>My food storage</h1>
     <main class="main">
-      <a href="/fridge">
+      <a href="/fridge" class="storage-a">
         <picture>
-          <img src="/images/fridge.jpg" alt="fridge">
+          <img src="/images/fridge.svg" alt="fridge">
         </picture>
       </a>
-      <a href="/freezer">
+      <a href="/freezer" class="storage-a">
         <picture>
-          <img src="/images/freezer.png" alt="freezer">
+          <img src="/images/freezer.svg" alt="freezer">
         </picture>
       </a>
-      <a href="/cupboard">
+      <a href="/cupboard" class="storage-a">
         <picture>
-          <img src="/images/cupboard.png" alt="kitchen cupboard">
+          <img src="/images/cupboard.svg" alt="kitchen cupboard">
         </picture>
       </a>
     </main>
 
-    <form class="col-3" method="post">
-      <input type="text" name="name" placeholder="name" required>
-      <input type="number" name="quantity" placeholder="quantity" required>
-      <select name="unit" required>
-        <option value="g">g</option>
-        <option value="ml">ml</option>
-      </select>
-      <label for="freezed">freezed</label>
-      <input type="checkbox" name="freezed" id="freezed">
-      <label for="chilled">chilled</label>
-      <input type="checkbox" name="chilled" id="chilled">
-      <button type="submit">Add</button>
-    </form>
+    </section>
+
+    <section class="index-section second" id="second">
+
+      <ul class="list-group">
+        <!-- consumables appear here -->
+        <% for (consumable of consumables) { %>
+          <li data-consumable-id="<%= consumable.id %>" class="list-group-item">
+            <a href="/consumables/<%= consumable.id %>">
+              <p class="consumable-name">
+                <%= consumable.name %>
+              </p>
+              <p class="consumable-quantity">
+                <%= consumable.quantity ? String(consumable.quantity) : 0 %>
+                  <%= consumable.unit %>
+              </p>
+            </a>
+            <button data-doc="<%= consumable.id %>" class="trashcan"></button>
+          </li>
+          <% } %>
+      </ul>
+
+      <h1>Add new consumable</h1>
+      <form class="row row-cols-lg-auto g-3 align-items-center" method="post">
+      
+        <div class="col-12">
+          <input class="form-control" type="text" name="name" placeholder="name" id="name" required>
+          <label class="visually-hidden" for="name">name</label>
+        </div>
+      
+        <div class="col-12">
+          <input class="form-control" type="number" name="quantity" placeholder="quantity" id="quantity" required>
+          <label class="visually-hidden" for="quantity">quantity</label>
+        </div>
+      
+        <div class="col-12">
+          <select class="form-select" name="unit" required>
+            <option value="g">g</option>
+            <option value="ml">ml</option>
+            <option value="piece">piece</option>
+          </select>
+        </div>
+      
+        <div class="col-12">
+          <!-- clear this if you dont want to have it in a column -->
+          <div>
+            <div class="form-check">
+              <label class="form-check-label" for="freezed">freezed</label>
+              <input class="form-check-input" type="checkbox" name="freezed" id="freezed">
+            </div>
+            <div class="form-check">
+              <label class="form-check-label" for="chilled">chilled</label>
+              <input class="form-check-input" type="checkbox" name="chilled" id="chilled">
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-12">
+          <button class="btn btn-primary btn-block" type="submit">Add</button>
+        </div>
+      
+      </form>
+
+    </section>
+
+    <section class="index-section third" id="third">
+
+    </section>
+
+<script>
+  const trashcans = document.querySelectorAll(".trashcan");
+
+  trashcans.forEach(trashcan => {
+    trashcan.addEventListener("click", (e) => {
+      console.log(e.target.dataset.doc);
+      const endpoint = `/${e.target.dataset.doc}`;
+
+      fetch(endpoint, {
+        method: "DELETE"
+      })
+        // .then((response) => response.json()) // Return the response
+        .then((data) => {
+          console.log(data);
+          window.location.href = "/";
+          if (data.success) {
+            // Find the parent <li> element and remove it from the DOM
+            const consumableElement = e.target.closest("li");
+            if (consumableElement) {
+              consumableElement.remove();
+            }
+          }
+        })
+        .catch(err => console.log(err));
+    });
+
+  });
+</script>
+
   </body>
 
 </html>

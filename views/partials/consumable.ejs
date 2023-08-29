@@ -1,0 +1,15 @@
+
+<% for (consumable of consumables) { %>
+    <li data-consumable-id="<%= consumable.id %>">
+        <a href="/consumables/<%= consumable.id %>">
+            <p class="consumable-name">
+                <%= consumable.name %>
+            </p>
+            <p class="consumable-quantity">
+                <%= consumable.quantity ? String(consumable.quantity) : 0 %>
+                    <%= consumable.unit %>
+            </p>
+        </a>
+        <a data-doc="<%= consumable.id %>" class="trashcan">delete</a>
+    </li>
+<% } %>

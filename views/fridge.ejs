@@ -2,30 +2,29 @@
 <html>
 <%- include('partials/head.ejs') %>
 
-    <body id="fridge">
-        <main class="container">
-        <picture class="col-1">
-            <img class="illustration" src="/images/fridge.jpg" alt="fridge">
+<body id="fridge" class="container">
+    <main class="row justify-content-between">
+        <picture class="col-3">
+            <img class="illustration" src="/images/fridge.svg" alt="fridge">
         </picture>
 
-        <ul class="col-2">
+        <ul class="col-5 list-group">
             <!-- consumables appear here -->
             <% for (consumable of consumables) { %>
-            <li>
+            <li data-consumable-id="<%= consumable.id %>" class="list-group-item">
                 <a href="/consumables/<%= consumable.id %>">
                     <p class="consumable-name"><%= consumable.name %></p>
                     <p class="consumable-quantity"><%= consumable.quantity ? String(consumable.quantity) : 0 %> <%= consumable.unit %></p>
                 </a>
-                <a data-doc="<%= consumable.id %>" class="trashcan">delete</a>
+                <button data-doc="<%= consumable.id %>" class="trashcan"></button>
             </li>
             <% } %>
         </ul>
 
-        </main>
-    </body>
+    </main>
 
-    <script>
-        const trashcans = document.querySelectorAll(".trashcan");
+<script>
+    const trashcans = document.querySelectorAll(".trashcan");
 
         trashcans.forEach(trashcan => {
             trashcan.addEventListener("click", (e) => {
@@ -35,17 +34,23 @@
                 fetch(endpoint, {
                     method: "DELETE"
                 })
-                    .then((response) => response.json()) // Return the response
+                    // .then((response) => response.json()) // Return the response
                     .then((data) => {
+                        console.log(data);
                         window.location.href = "/fridge";
+                        if (data.success) {
+                            // Find the parent <li> element and remove it from the DOM
+                            const consumableElement = e.target.closest("li");
+                            if (consumableElement) {
+                                consumableElement.remove();
+                            }
+                        }
                     })
                     .catch(err => console.log(err));
+            });
 
-                    
-                });
-
-                
         });
-    </script>
+</script>
+</body>
 
 </html>

@@ -1,29 +1,94 @@
-* {
-  margin: 0;
-  padding: 0;
+:root {
+  --bs-border-color: #474a4d;
+  --form-border-color: #ecb604;
+  --form-box-shadow: 0 0 .25rem .50rem rgba(99, 59, 0, 0.25);
+
+  --form-check-input-checked-bg-color: var(--form-border-color);
+  --form-check-input-checked-border-color: var(--form-border-color);
+
+  --form-check-input-focus-box-shadow: var(--form-box-shadow);
+
+  --btn-primary-bg-color: var(--form-border-color);
+  --btn-primary-border-color: var(--form-border-color);
+
+  --btn-primary-hover-bg-color: rgb(145, 99, 1);
+  --btn-primary-hover-border-color: var(--form-border-color);
 }
 
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: rgb(219, 219, 214);
+  min-height: 100vh;
+}
+
+/* form */
+
+.form-control:focus {
+  border-color: var(--form-border-color);
+  box-shadow: var(--form-box-shadow);
+}
+
+.form-select:focus {
+  border-color: var(--form-border-color);
+  box-shadow: var(--form-box-shadow);
+}
+
+.form-check-input:focus {
+  box-shadow: var(--form-check-input-focus-box-shadow);
+}
+
+.form-check-input:checked {
+  background-color: var(--form-check-input-checked-bg-color);
+  border-color: var(--form-check-input-checked-border-color);
+}
+
+.btn-primary {
+  background-color: var(--btn-primary-bg-color);
+  border-color: var(--btn-primary-border-color);
+  color: black;
+}
+
+.btn-primary:hover {
+  background-color: var(--btn-primary-hover-bg-color);
+  border-color: var(--btn-primary-hover-border-color);
 }
 
 /* INDEX */
 
+#index .navbar {
+  width: 100%;
+}
+
+.index-section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.index-section.second .list-group {
+  min-width: 50vw;
+}
+
+.index-section.second .list-group-item a {
+  display: flex;
+}
+
 #index h1 {
   text-align: center;
+  font-family: 'Black Ops One', sans-serif;
+  font-size: 3rem;
+  color: #ecb604;
 }
 
 #index .main {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  gap: 5%;
   width: 100%;
-}
-
-#index a {
-  flex-basis: 20%;
-  display: block;
 }
 
 #index picture {
@@ -34,50 +99,75 @@ body {
   max-width: 100%;
 }
 
+/* FRIDGE, FREEZER, CUPBOARD  */
 
-/* FRIDGE */
-
-#fridge {
+#fridge main ,#cupboard main ,#freezer main {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 }
 
-#fridge .container {
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.container {
   max-width: 70vw;
   display: flex;
   justify-content: space-between;
 }
 
-#fridge .col-1 {
-  flex-basis: 30%;
-}
-
-#fridge .col-2 {
-  flex-basis: 20%;
-}
-
-#fridge .col-3 {
-  flex-basis: 45%;
-}
-
-#fridge .illustration {
+#fridge .row, #cupboard .row, #freezer .row {
   width: 100%;
 }
 
-#fridge p {
+.illustration {
+  width: 100%;
+}
+
+.storage-a:hover {
+  scale: 1.1;
+}
+
+p {
   font-size: 1rem;
 }
 
-#fridge li {
+li {
   display: flex;
   justify-content: space-between;
   list-style: none;
 }
 
-#fridge a {
+a {
   display: flex;
+  align-items: center;
   gap: 1rem;
   text-decoration: none;
+}
+
+.list-group p {
+  margin: 0;
+  color: black;
+}
+
+.trashcan {
+  background-image: url(../images/trash-can.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  transition: 200ms;
+  width: 2rem;
+  height: 3rem;
+}
+
+.trashcan:hover {
+  scale: 1.1;
+  transition: 200ms;
 }

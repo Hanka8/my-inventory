@@ -6,7 +6,7 @@ const consumableSchema = new Schema({
     freezed: Boolean,
     chilled: Boolean,
     unit: String,
-    amount: Number,
+    quantity: Number,
 }, { timestamps: true });
 
 module.exports = mongoose.model('Consumable', consumableSchema);

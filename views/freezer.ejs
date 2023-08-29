@@ -2,15 +2,62 @@
 <html>
 <%- include('partials/head.ejs') %>
 
-    <body id="freezer">
-        <picture>
-            <img src="/images/freezer.png" alt="freezer">
+<body id="freezer" class="container">
+    <main class="row justify-content-between">
+        <picture class="col-3">
+            <img class="illustration" src="/images/freezer.svg" alt="freezer">
         </picture>
 
-        <ul>
+        <ul class="col-5 list-group">
             <!-- consumables appear here -->
+            <% for (consumable of consumables) { %>
+                <li data-consumable-id="<%= consumable.id %>" class="list-group-item">
+                    <a href="/consumables/<%= consumable.id %>">
+                        <p class="consumable-name">
+                            <%= consumable.name %>
+                        </p>
+                        <p class="consumable-quantity">
+                            <%= consumable.quantity ? String(consumable.quantity) : 0 %>
+                                <%= consumable.unit %>
+                        </p>
+                    </a>
+                    <button data-doc="<%= consumable.id %>" class="trashcan"></button>
+                </li>
+                <% } %>
         </ul>
 
-    </body>
+    </main>
+
+<script>
+    const trashcans = document.querySelectorAll(".trashcan");
+
+    trashcans.forEach(trashcan => {
+        trashcan.addEventListener("click", (e) => {
+            console.log(e.target.dataset.doc);
+            const endpoint = `/freezer/${e.target.dataset.doc}`;
+
+            fetch(endpoint, {
+                method: "DELETE"
+            })
+                // .then((response) => response.json()) // Return the response
+                .then((data) => {
+                    console.log(data);
+                    window.location.href = "/freezer";
+                    if (data.success) {
+                        // Find the parent <li> element and remove it from the DOM
+                        const consumableElement = e.target.closest("li");
+                        if (consumableElement) {
+                            consumableElement.remove();
+                        }
+                    }
+                })
+                .catch(err => console.log(err));
+        });
+
+    });
+</script>
+</body>
+
+
 
 </html>

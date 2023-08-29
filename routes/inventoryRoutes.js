@@ -10,6 +10,8 @@ router.get('/', indexController.index);
 
 router.post('/', indexController.index_post);
 
+router.delete('/:id', indexController.index_delete);
+
 
 router.get('/fridge', indexController.fridge);
 
