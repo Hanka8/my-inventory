@@ -106,23 +106,26 @@
 
     <section class="index-section third" id="third">
       <h2>Recipes</h2>
-      <ul class="list-group">
+      <div class="recipe-container">
         <% for (recipe of recipes) { %>
-          <li data-recipe-id="<%= recipe.id %>" class="list-group-item">
-            <a href="/<%= recipe.id %>">
-              <p class="recipe-name">
-                <%= recipe.title %>
-                  <span class="recipe-usedIngredient">
-                    <%= recipe.usedIngredientCount %>
-                  </span> |
-                  <span class="recipe-missedIngredient">
-                    <%= recipe.missedIngredientCount %>
-                  </span>
-              </p>
-            </a>
-          </li>
+          <div class="card" style="width: 18rem;">
+            <img src="<%= recipe.image %>" class="card-img-top" alt="recipe image">
+            <div class="card-body">
+              <a class="card-text" href="/<%= recipe.id %>">
+                <p class="recipe-name">
+                  <%= recipe.title %>
+                    <span class="recipe-usedIngredient">
+                      <%= recipe.usedIngredientCount %>
+                    </span> /
+                    <span class="recipe-missedIngredient">
+                      <%= recipe.missedIngredientCount %>
+                    </span>
+                </p>
+              </a>
+            </div>
+          </div>
           <% } %>
-      </ul>
+        </div>
     </section>
 
 <script>

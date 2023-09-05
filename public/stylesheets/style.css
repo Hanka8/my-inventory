@@ -165,7 +165,13 @@ a {
   transition: 200ms;
 }
 
+.recipe-container {
+  display: flex;
+  gap: 3%;
+}
+
 .recipe-name:hover {
+  transition: 200ms;
   scale: 1.05;
 }
 
