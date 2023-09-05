@@ -3,24 +3,24 @@
   <%- include('partials/head.ejs') %>
   <body id="index">
 
-  <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+  <nav class="navbar navbar-expand-lg bg-dark sticky-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">My food</a>
+      <a class="navbar-brand text-light" href="#">My food</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="collapse navbar-collapse text-light" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link active" href="#first">Storages</a>
-          <a class="nav-link active" href="#second">All food</a>
-          <a class="nav-link active" href="#third">Recipes</a>
+          <a class="nav-link active text-light" href="#first">Storages</a>
+          <a class="nav-link active text-light" href="#second">All food</a>
+          <a class="nav-link active text-light" href="#third">Recipes</a>
         </div>
       </div>
     </div>
   </nav>
 
-    <section class="index-section" id="first">
+  <section class="index-section" id="first">
     <h1>My food storage</h1>
     <main class="main">
       <a href="/fridge" class="storage-a">
@@ -39,11 +39,10 @@
         </picture>
       </a>
     </main>
-
-    </section>
+  </section>
 
     <section class="index-section second" id="second">
-
+      <h2>All consumables</h2>
       <ul class="list-group">
         <!-- consumables appear here -->
         <% for (consumable of consumables) { %>
@@ -62,7 +61,7 @@
           <% } %>
       </ul>
 
-      <h1>Add new consumable</h1>
+      <h2>Add new consumable</h1>
       <form class="row row-cols-lg-auto g-3 align-items-center" method="post">
       
         <div class="col-12">
@@ -106,6 +105,7 @@
     </section>
 
     <section class="index-section third" id="third">
+      <h2>Recipes</h2>
 
     </section>
 
