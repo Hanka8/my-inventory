@@ -10,12 +10,12 @@ exports.index = asyncHandler(async (req, res, next) => {
     }, null, { sort: { name: 1 } }).exec();
 
     // Function to fetch nutrition data for a consumable
-    const fetchRecipesData = async () => {
+    const fetchRecipesData = async (consumables) => {
       const response = await axios.get(
         'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients',
         {  
         params: {
-            ingredients: 'apples,flour,sugar',
+            ingredients: `${consumables.join(',')}`,
             ranking: '1',
             ignorePantry: 'true',
             number: '5'
@@ -28,9 +28,9 @@ exports.index = asyncHandler(async (req, res, next) => {
       return response.data;
     };
 
-    const recipes = await fetchRecipesData();
-    console.log("here");
-    console.log(recipes);
+    const recipes = await fetchRecipesData(all_consumables.map(consumable => consumable.name));
+
+    // all_consumables.map(consumable => consumable.name)
 
     // Render the "index" view with consumables and nutrition data
     res.render("index", { title: "My inventory", consumables: all_consumables, recipes: recipes});

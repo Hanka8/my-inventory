@@ -165,6 +165,10 @@ a {
   transition: 200ms;
 }
 
+.recipe-name:hover {
+  scale: 1.05;
+}
+
 .recipe-usedIngredient {
   color: darkgreen;
 }
