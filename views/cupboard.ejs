@@ -33,7 +33,7 @@
     trashcans.forEach(trashcan => {
         trashcan.addEventListener("click", (e) => {
             console.log(e.target.dataset.doc);
-            const endpoint = `/freezer/${e.target.dataset.doc}`;
+            const endpoint = `/cupboard/${e.target.dataset.doc}`;
 
             fetch(endpoint, {
                 method: "DELETE"
@@ -41,7 +41,7 @@
                 // .then((response) => response.json()) // Return the response
                 .then((data) => {
                     console.log(data);
-                    window.location.href = "/freezer";
+                    window.location.href = "/cupboard";
                     if (data.success) {
                         // Find the parent <li> element and remove it from the DOM
                         const consumableElement = e.target.closest("li");

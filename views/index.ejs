@@ -108,11 +108,10 @@
       <h2>Recipes</h2>
       <div class="recipe-container">
         <% for (recipe of recipes) { %>
-          <div class="card" style="width: 18rem;">
+          <a class="card recipe" href="/<%= recipe.id %>" style="width: 18rem;">
             <img src="<%= recipe.image %>" class="card-img-top" alt="recipe image">
             <div class="card-body">
-              <a class="card-text" href="/<%= recipe.id %>">
-                <p class="recipe-name">
+                <p class="card-text">
                   <%= recipe.title %>
                     <span class="recipe-usedIngredient">
                       <%= recipe.usedIngredientCount %>
@@ -121,9 +120,8 @@
                       <%= recipe.missedIngredientCount %>
                     </span>
                 </p>
-              </a>
             </div>
-          </div>
+          </a>
           <% } %>
         </div>
     </section>

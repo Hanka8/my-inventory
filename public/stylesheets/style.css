@@ -66,6 +66,7 @@ body {
   align-items: center;
   flex-direction: column;
   gap: 3rem;
+  margin-bottom: 3rem;
 }
 
 .index-section.second .list-group {
@@ -167,10 +168,12 @@ a {
 
 .recipe-container {
   display: flex;
+  justify-content: center;
   gap: 3%;
+  flex-wrap: wrap;
 }
 
-.recipe-name:hover {
+.recipe:hover {
   transition: 200ms;
   scale: 1.05;
 }
@@ -181,4 +184,15 @@ a {
 
 .recipe-missedIngredient {
   color: darkred;
+}
+
+.recipe-main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  padding: 2rem 3rem;
 }

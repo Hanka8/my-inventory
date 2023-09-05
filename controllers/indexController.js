@@ -16,9 +16,9 @@ exports.index = asyncHandler(async (req, res, next) => {
         {  
         params: {
             ingredients: `${consumables.join(',')}`,
-            ranking: '1',
+            ranking: '2',
             ignorePantry: 'true',
-            number: '5'
+            number: '10'
         },
         headers: {
             'X-RapidAPI-Key': 'bb1eda250cmsh7a72288ff56c541p172b91jsn129ee7ffe099',
@@ -29,8 +29,6 @@ exports.index = asyncHandler(async (req, res, next) => {
     };
 
     const recipes = await fetchRecipesData(all_consumables.map(consumable => consumable.name));
-
-    // all_consumables.map(consumable => consumable.name)
 
     // Render the "index" view with consumables and nutrition data
     res.render("index", { title: "My inventory", consumables: all_consumables, recipes: recipes});
@@ -89,6 +87,15 @@ exports.freezer = asyncHandler(async (req, res, next) => {
     res.render("freezer", { title: "Freezer", consumables: freezed_consumables });
 });
 
+exports.freezer_delete = asyncHandler(async (req, res, next) => {
+    const result = await Consumable.findByIdAndDelete(req.params.id);
+    if (!result) {
+        res.status(404).json({ error: "Resource not found" });
+    } else {
+        console.log(res.json())
+    }
+});
+
 exports.cupboard = asyncHandler(async (req, res, next) => {
         const freezed_consumables = await Consumable.find({ 
         "chilled": false,
@@ -97,3 +104,33 @@ exports.cupboard = asyncHandler(async (req, res, next) => {
         .exec();
     res.render("cupboard", { title: "Cupboard", consumables: freezed_consumables });
 });
+
+exports.cupboard_delete = asyncHandler(async (req, res, next) => {
+    const result = await Consumable.findByIdAndDelete(req.params.id);
+    if (!result) {
+        res.status(404).json({ error: "Resource not found" });
+    } else {
+        console.log(res.json())
+    }
+    
+});
+
+exports.recipe = asyncHandler(async (req, res, next) => {
+
+    const fetchRecipeData = async (id) => {
+        const response = await axios.get(
+            `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`,
+            {  
+            headers: {
+                'X-RapidAPI-Key': 'bb1eda250cmsh7a72288ff56c541p172b91jsn129ee7ffe099',
+                'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+            }
+        });
+      return response.data;
+    };
+
+    const recipe = await fetchRecipeData(req.params.id);
+    console.log(recipe);
+    res.render("recipe", { title: "Recipe", recipe: recipe });
+});
+
