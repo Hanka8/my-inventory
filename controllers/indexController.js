@@ -1,13 +1,45 @@
 const asyncHandler = require("express-async-handler");
 const Consumable = require("../models/consumable");
+const axios = require('axios');
 
 exports.index = asyncHandler(async (req, res, next) => {
-        const all_consumables = await Consumable.find({ 
-            "quantity": { $gt: 0 }
-        }, null, { sort: { name: 1 } })
-        .exec();
-    res.render("index", { title: "My inventory", consumables: all_consumables });
+  try {
+    // Fetch all consumables with quantity > 0
+    const all_consumables = await Consumable.find({ 
+      "quantity": { $gt: 0 }
+    }, null, { sort: { name: 1 } }).exec();
+
+    // Function to fetch nutrition data for a consumable
+    const fetchRecipesData = async () => {
+      const response = await axios.get(
+        'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients',
+        {  
+        params: {
+            ingredients: 'apples,flour,sugar',
+            ranking: '1',
+            ignorePantry: 'true',
+            number: '5'
+        },
+        headers: {
+            'X-RapidAPI-Key': 'bb1eda250cmsh7a72288ff56c541p172b91jsn129ee7ffe099',
+            'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+        }
+        });
+      return response.data;
+    };
+
+    const recipes = await fetchRecipesData();
+    console.log("here");
+    console.log(recipes);
+
+    // Render the "index" view with consumables and nutrition data
+    res.render("index", { title: "My inventory", consumables: all_consumables, recipes: recipes});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
+
 
 exports.index_post = asyncHandler(async (req, res, next) => {
     const consumable = new Consumable({
@@ -29,7 +61,6 @@ exports.index_delete = asyncHandler(async (req, res, next) => {
         console.log(res.json())
     }
 });
-
 
 exports.fridge = asyncHandler(async (req, res, next) => {
     const chilled_consumables = await Consumable.find({ 

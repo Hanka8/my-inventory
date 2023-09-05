@@ -164,3 +164,11 @@ a {
   scale: 1.1;
   transition: 200ms;
 }
+
+.recipe-usedIngredient {
+  color: darkgreen;
+}
+
+.recipe-missedIngredient {
+  color: darkred;
+}

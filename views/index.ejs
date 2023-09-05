@@ -106,7 +106,15 @@
 
     <section class="index-section third" id="third">
       <h2>Recipes</h2>
-
+      <ul class="list-group">
+      <% for (recipe of recipes) { %>
+        <li data-recipe-id="<%= recipe.id %>" class="list-group-item">
+          <a href="/<%= recipe.id %>">
+            <p class="recipe-name"> <%= recipe.title %> <span class="recipe-usedIngredient"><%= recipe.usedIngredientCount %></span> | <span class="recipe-missedIngredient"><%= recipe.missedIngredientCount %></span> </p>
+          </a>
+        </li>
+      <% } %>
+      </ul>
     </section>
 
 <script>
