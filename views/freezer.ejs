@@ -12,15 +12,15 @@
             <!-- consumables appear here -->
             <% for (consumable of consumables) { %>
                 <li data-consumable-id="<%= consumable.id %>" class="list-group-item">
-                    <a href="/consumables/<%= consumable.id %>">
-                        <p class="consumable-name">
+                    <div class="consumable-row">
+                        <p class="consumable-col consumable-name">
                             <%= consumable.name %>
                         </p>
-                        <p class="consumable-quantity">
+                        <p class="consumable-col consumable-quantity">
                             <%= consumable.quantity ? String(consumable.quantity) : 0 %>
                                 <%= consumable.unit %>
                         </p>
-                    </a>
+                    </div>
                     <button data-doc="<%= consumable.id %>" class="trashcan"></button>
                 </li>
                 <% } %>

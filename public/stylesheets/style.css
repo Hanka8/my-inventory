@@ -145,7 +145,6 @@ a {
 
 .list-group p {
   margin: 0;
-  color: black;
 }
 
 .consumable-row {
@@ -158,6 +157,20 @@ a {
 
 .consumable-col {
   flex-basis: 100px;
+}
+
+.consumable {
+  border: 1px solid black;
+}
+
+.list-header {
+  background-color: slategray;
+}
+
+.list-header .consumable-row .consumable-col{
+  color: white;
+  font-weight: 700;
+  margin: .7rem 0;
 }
 
 .trashcan {

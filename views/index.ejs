@@ -44,6 +44,13 @@
     <section class="index-section second" id="second">
       <h2>All consumables</h2>
       <ul class="list-group">
+        <li class="list-group-item list-header">
+          <div class="consumable-row">
+            <p class="consumable-col">Name</p>
+            <p class="consumable-col">Quantity</p>
+            <p class="consumable-col">Expiration</p>
+          </div>
+        </li>
         <!-- consumables appear here -->
         <% for (consumable of consumables) { %>
           <% const today = new Date(); %>
@@ -89,7 +96,7 @@
         </div>
 
         <div class="col-12">
-          <input class="form-control" type="date" name="expirationDate" placeholder="expiration date" id="expirationDate" required>
+          <input class="form-control" type="date" name="expirationDate" placeholder="expiration date" id="expirationDate">
           <label class="visually-hidden" for="expirationDate">expiration date</label>
         </div>  
       
