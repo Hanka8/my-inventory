@@ -1,0 +1,124 @@
+
+.container {
+    transform: scale(0.7);
+    /* background: url(images/socials-svg.svg) center no-repeat; */
+    background-size: contain;
+    position: absolute;
+    width: 16rem;
+    height: 16rem;
+    left: 0;
+    bottom: 0;
+}
+
+.fb-ig {
+    background: url(images/socials-fb-ig.svg) center no-repeat;
+}
+
+.about_socials_container {
+  right: 0;
+  bottom: 0;
+  left: unset;
+}
+
+.wiki-yt {
+  background: url(images/socials-wiki-yt.svg) center no-repeat;
+  top: 5vh;
+  right: 15vw;
+}
+    
+.fa-facebook-f {
+  font-size: 2rem;
+  color: black;
+}
+    
+.fa-instagram {
+  font-size: 2.7rem;
+  color: black;
+}
+
+.fa-wikipedia-w {
+  font-size: 1.8rem;
+}
+
+.fa-youtube {
+  font-size: 1.8rem;
+}
+
+.icons {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  width: 4.6rem;
+  height: 4.6rem;
+  background: #A3BA3D;
+  border-radius: 50%;
+  text-align: center;
+  padding: 2rem;
+  
+}
+    
+.fb, .wiki {
+    top: 7.8rem;
+    left: 2.8rem;
+}
+  
+.ig, .yt {
+    top: 4rem;
+    left: 8.8rem;
+}
+
+.ig, .fb, .ig, .wiki, .yt {
+  transition: 150ms ease;
+}
+    
+.ig:hover,
+.fb:hover,
+.wiki:hover,
+.yt:hover {
+  transform: scale(1.06);
+  background: #5d513e;
+  transition: 150ms ease;
+}
+
+
+/* .ig:hover .fa-brands, .fb:hover .fa-brands {
+  color: #4F6100;
+}  */
+
+@media (max-width: 800px) {
+  .wiki-yt {
+      top: auto;
+      bottom: 5vh;
+    }
+
+   .fb, .yt, .ig, .wiki {
+      animation-name: scaleUp;
+      animation-duration: 5s;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+
+    .ig:hover,
+    .fb:hover,
+    .wiki:hover,
+    .yt:hover {
+      transform: none;
+      background: #A3BA3D;
+      transition: none;
+    }
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(1.0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1.0);
+  }
+}
