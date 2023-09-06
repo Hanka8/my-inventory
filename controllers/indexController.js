@@ -46,6 +46,7 @@ exports.index_post = asyncHandler(async (req, res, next) => {
         chilled: Boolean(req.body.chilled),
         unit: req.body.unit,
         quantity: req.body.quantity,
+        expirationDate: req.body.expirationDate
     });
     await consumable.save();
     res.redirect("/");

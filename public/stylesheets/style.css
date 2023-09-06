@@ -148,6 +148,18 @@ a {
   color: black;
 }
 
+.consumable-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.consumable-col {
+  flex-basis: 100px;
+}
+
 .trashcan {
   background-image: url(../images/trash-can.png);
   background-repeat: no-repeat;

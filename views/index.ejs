@@ -46,16 +46,22 @@
       <ul class="list-group">
         <!-- consumables appear here -->
         <% for (consumable of consumables) { %>
-          <li data-consumable-id="<%= consumable.id %>" class="list-group-item">
-            <a href="/consumables/<%= consumable.id %>">
-              <p class="consumable-name">
+          <% const today = new Date(); %>
+          <li data-consumable-id="<%= consumable.id %>" class="list-group-item consumable" 
+            data-expiration="<%= consumable.expirationDate ? consumable.expirationDate : undefined %>"
+            data-expiring-soon="<%= consumable.expirationDate ? consumable.expiring_soon : undefined %>">
+            <div class="consumable-row">
+              <p class="consumable-col consumable-name">
                 <%= consumable.name %>
               </p>
-              <p class="consumable-quantity">
+              <p class="consumable-col consumable-quantity">
                 <%= consumable.quantity ? String(consumable.quantity) : 0 %>
                   <%= consumable.unit %>
               </p>
-            </a>
+              <p class="consumable-col consumable-expirationDate">
+                <%= consumable.expirationDate ? consumable.date_formatted : "undefined" %>
+              </p>
+            </div>
             <button data-doc="<%= consumable.id %>" class="trashcan"></button>
           </li>
           <% } %>
@@ -73,7 +79,7 @@
           <input class="form-control" type="number" name="quantity" placeholder="quantity" id="quantity" required>
           <label class="visually-hidden" for="quantity">quantity</label>
         </div>
-      
+
         <div class="col-12">
           <select class="form-select" name="unit" required>
             <option value="g">g</option>
@@ -81,9 +87,13 @@
             <option value="piece">piece</option>
           </select>
         </div>
+
+        <div class="col-12">
+          <input class="form-control" type="date" name="expirationDate" placeholder="expiration date" id="expirationDate" required>
+          <label class="visually-hidden" for="expirationDate">expiration date</label>
+        </div>  
       
         <div class="col-12">
-          <!-- clear this if you dont want to have it in a column -->
           <div>
             <div class="form-check">
               <label class="form-check-label" for="freezed">freezed</label>
@@ -153,6 +163,25 @@
     });
 
   });
+
+  const consumables = document.querySelectorAll(".consumable");
+
+  consumables.forEach(consumable => {
+    const expirationDate = consumable.dataset.expiration;
+    const expiringSoon = consumable.dataset.expiringSoon;
+    const today = new Date();
+    const expirationDateObj = new Date(expirationDate);
+    const daysLeft = Math.floor((expirationDateObj - today) / (1000 * 60 * 60 * 24));
+
+    if (expirationDate) {
+      if (daysLeft < 0) {
+        consumable.classList.add("list-group-item-danger");
+      } else if (daysLeft < 3) {
+        consumable.classList.add("list-group-item-warning");
+      }
+    }
+  });
+
 </script>
 
   </body>
