@@ -14,7 +14,7 @@ router.delete('/:id', indexController.index_delete);
 
 router.get("/update/:id", indexController.index_update);
 
-router.post("/update/:id", indexController.index_update);
+router.post("/update/:id", indexController.index_update_post);
 
 router.get('/fridge', indexController.fridge);
 

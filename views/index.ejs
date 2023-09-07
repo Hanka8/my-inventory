@@ -76,10 +76,10 @@
               </p>
             </div>
             <% if (update && consumable.id==consumableIdClicked) { %>
-              <form class="row update" action="post">
-                <input class="form-control" type="number" name="update-quantity" id="update-quantity">
-                <label for="upodate-quantity">update quantity</label>
-                <button class="btn btn-primary">update</button>
+              <form class="row update" method="POST">
+                <input class="form-control" type="number" name="updateQuantity" id="updateQuantity">
+                <label for="update-quantity">update quantity</label>
+                <button class="btn btn-primary" type="submit">update</a>
               </form>
               <% } else { %>
                 <a class="btn btn-outline-secondary btn-update" href="<%= `/update/${consumable.id}#second` %>"

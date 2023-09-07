@@ -74,6 +74,25 @@ exports.index_update = asyncHandler(async (req, res, next) => {
   }
 });
 
+exports.index_update_post = asyncHandler(async (req, res, next) => {
+
+    const consumable = await Consumable.findById(req.params.id);
+
+    const updatedConsumable = new Consumable({
+        _id: consumable.id,
+        name: consumable.name,
+        freezed: consumable.freezed,
+        chilled: consumable.chilled,
+        unit: consumable.unit,
+        quantity: req.body.updateQuantity,
+        expirationDate: consumable.expirationDate
+    });
+
+    await Consumable.findByIdAndUpdate(req.params.id, updatedConsumable, {});
+
+    res.redirect("/");
+});
+
 
 exports.index_post = asyncHandler(async (req, res, next) => {
     const consumable = new Consumable({
