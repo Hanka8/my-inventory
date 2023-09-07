@@ -22,6 +22,12 @@
 
   <section class="index-section" id="first">
     <h1>My food storage</h1>
+    <div class="index-description">
+      <p>Hey, welcome to my food storage app! By clicking on each storage type, you can see what it contains.</p>
+      <p>If you want to see the list of all consumables, scroll down to the next section. There, you can also add new
+        consumables or upgrade their quantity.</p>
+      <p>Scroll down to the last section to get some inspiration for possible recipes!</p>
+    </div>
     <main class="main">
       <a href="/fridge" class="storage-a">
         <picture>
@@ -68,6 +74,15 @@
               <p class="consumable-col consumable-expirationDate">
                 <%= consumable.expirationDate ? consumable.date_formatted : "undefined" %>
               </p>
+              <% if (update && consumable.id == consumableIdClicked) { %>
+                <form action="post">
+                  <input type="number" name="update-quantity" id="update-quantity">
+                  <label for="upodate-quantity">update quantity</label>
+                  <button>update</button>
+                </form>
+                <% } else { %>
+                  <a class="update-link" href="<%= `/update/${consumable.id}#second` %>" data-consumable-id="<%= consumable.id %>">update quantity</a>
+                <% } %>
             </div>
             <button data-doc="<%= consumable.id %>" class="trashcan"></button>
           </li>
@@ -144,6 +159,7 @@
     </section>
 
 <script>
+  //deleting consumables
   const trashcans = document.querySelectorAll(".trashcan");
 
   trashcans.forEach(trashcan => {
@@ -171,6 +187,7 @@
 
   });
 
+  //changing color of expiring consumables
   const consumables = document.querySelectorAll(".consumable");
 
   consumables.forEach(consumable => {
@@ -190,7 +207,5 @@
   });
 
 </script>
-
-  </body>
-
+</body>
 </html>

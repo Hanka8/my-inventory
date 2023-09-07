@@ -21,6 +21,26 @@ body {
   min-height: 100vh;
 }
 
+label {
+  display: none;
+}
+
+#second {
+  background-color:#474a4d;
+}
+
+#second h2 {
+  color: rgb(219, 219, 214);
+}
+
+#second .form-check-label {
+  color: rgb(219, 219, 214);
+}
+
+.index-description {
+  text-align: center;
+}
+
 /* form */
 
 .form-control:focus {
@@ -122,7 +142,12 @@ body {
   width: 100%;
 }
 
+.storage-a {
+  transition: 200ms;
+}
+
 .storage-a:hover {
+  transition: 200ms;
   scale: 1.1;
 }
 
