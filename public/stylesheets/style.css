@@ -198,6 +198,25 @@ a {
   margin: .7rem 0;
 }
 
+.btn-update {
+  min-width: max-content;
+  margin-right: 7%;
+}
+
+.row.update {
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  gap: 5%;
+}
+
+.update input.form-control {
+  width: 50%;
+}
+
+.update button {
+  width: 40%;
+}
+
 .trashcan {
   background-image: url(../images/trash-can.png);
   background-repeat: no-repeat;

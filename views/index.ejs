@@ -74,16 +74,17 @@
               <p class="consumable-col consumable-expirationDate">
                 <%= consumable.expirationDate ? consumable.date_formatted : "undefined" %>
               </p>
-              <% if (update && consumable.id == consumableIdClicked) { %>
-                <form action="post">
-                  <input type="number" name="update-quantity" id="update-quantity">
-                  <label for="upodate-quantity">update quantity</label>
-                  <button>update</button>
-                </form>
-                <% } else { %>
-                  <a class="update-link" href="<%= `/update/${consumable.id}#second` %>" data-consumable-id="<%= consumable.id %>">update quantity</a>
-                <% } %>
             </div>
+            <% if (update && consumable.id==consumableIdClicked) { %>
+              <form class="row update" action="post">
+                <input class="form-control" type="number" name="update-quantity" id="update-quantity">
+                <label for="upodate-quantity">update quantity</label>
+                <button class="btn btn-primary">update</button>
+              </form>
+              <% } else { %>
+                <a class="btn btn-outline-secondary btn-update" href="<%= `/update/${consumable.id}#second` %>"
+                  data-consumable-id="<%= consumable.id %>">update quantity</a>
+                <% } %>
             <button data-doc="<%= consumable.id %>" class="trashcan"></button>
           </li>
           <% } %>
