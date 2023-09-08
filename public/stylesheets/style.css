@@ -25,6 +25,10 @@ label {
   display: none;
 }
 
+label.label-checkbox {
+  display: inline;
+}
+
 #second {
   background-color:#474a4d;
 }
@@ -264,4 +268,43 @@ a {
   gap: 1rem;
   width: 100%;
   padding: 2rem 3rem;
+}
+
+@media (max-width: 768px) {
+
+  .index-section.second .list-group {
+    min-width: 90vw;
+  }
+
+  #first {
+    padding: 2rem;
+  }
+
+  #second {
+    padding: 2rem;
+  }
+
+  .recipe-container {
+    gap: 2rem;
+  }
+
+  .navbar-toggler {
+    background-color: rgb(219, 219, 214);
+  }
+
+  .list-group-item.consumable {
+    font-size: .8rem;
+  }
+
+  .btn-update {
+    font-size: .8rem;
+    margin-right: 0;
+  }
+}
+  
+@media (max-width: 540px) {
+  .consumable-col {
+    flex-basis: 75px;
+  }
+  
 }

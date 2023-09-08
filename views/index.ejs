@@ -83,7 +83,7 @@
               </form>
               <% } else { %>
                 <a class="btn btn-outline-secondary btn-update" href="<%= `/update/${consumable.id}#second` %>"
-                  data-consumable-id="<%= consumable.id %>">update quantity</a>
+                  data-consumable-id="<%= consumable.id %>">update</a>
                 <% } %>
             <button data-doc="<%= consumable.id %>" class="trashcan"></button>
           </li>
@@ -119,11 +119,11 @@
         <div class="col-12">
           <div>
             <div class="form-check">
-              <label class="form-check-label" for="freezed">freezed</label>
+              <label class="form-check-label label-checkbox" for="freezed">freezed</label>
               <input class="form-check-input" type="checkbox" name="freezed" id="freezed">
             </div>
             <div class="form-check">
-              <label class="form-check-label" for="chilled">chilled</label>
+              <label class="form-check-label label-checkbox" for="chilled">chilled</label>
               <input class="form-check-input" type="checkbox" name="chilled" id="chilled">
             </div>
           </div>

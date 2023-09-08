@@ -190,4 +190,3 @@ exports.recipe = asyncHandler(async (req, res, next) => {
     console.log(recipe);
     res.render("recipe", { title: "Recipe", recipe: recipe });
 });
-
