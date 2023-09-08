@@ -1,6 +1,6 @@
-### MY FOOD INVENTORY
+## My food inventory
 
-## My food inventory app built for The Odin Project | NodeJS.
+# My food inventory app built for The Odin Project | NodeJS.
 
 Its main purpose is to brush up my skills in CRUD operations.
 
