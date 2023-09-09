@@ -5,10 +5,12 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const axios = require('axios');
+const dotenv = require('dotenv');
+const inventoryRoutes = require('./routes/inventoryRoutes');
 
-var inventoryRoutes = require('./routes/inventoryRoutes');
+dotenv.config();
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,7 +26,7 @@ app.use('/', inventoryRoutes);
 
 //connect the database
 
-const mongoDB = "mongodb+srv://hankamaruskevicova:myInventory123@cluster0.j93jqer.mongodb.net/my-inventory?retryWrites=true&w=majority";
+const mongoDB = process.env.SECRET_KEY;
 
 async function main(){
   await mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
@@ -50,7 +52,7 @@ app.use(function(err, req, res, next) {
 
 
 //listen to port 3000 by default
-app.listen(process.env.PORT, function(){
+app.listen(process.env.PORT || 3000, function(){
   console.log('Server is running');
 });
 
