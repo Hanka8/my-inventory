@@ -22,5 +22,4 @@ consumableSchema.virtual("expiring_soon").get(function () {
     return diff <= 3;
 });
 
-
 module.exports = mongoose.model('Consumable', consumableSchema);

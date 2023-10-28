@@ -1,4 +1,5 @@
 :root {
+  --color-beige: #e2deb5;
   --bs-border-color: #474a4d;
   --form-border-color: #ecb604;
   --form-box-shadow: 0 0 .25rem .50rem rgba(99, 59, 0, 0.25);
@@ -15,9 +16,19 @@
   --btn-primary-hover-border-color: var(--form-border-color);
 }
 
+/* utility */
+.text-beige {
+  color: var(--color-beige)
+}
+
+.navbar-nav .nav-link.active.text-beige,
+.navbar-nav .nav-link.show.text-beige {
+  color: var(--color-beige);
+}
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: rgb(43, 43, 36);
+  background-color: var(--color-beige)
   min-height: 100vh;
 }
 
@@ -30,21 +41,27 @@ label.label-checkbox {
 }
 
 #first {
-  background-color: #e2deb5;
-  background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%2357010f' fill-opacity='0.4'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  color: #e2deb5;
+  background-image: url(/images/bg.jpg);
+  background-size: cover;
+  padding-bottom: 5rem;
+  padding-top: 3rem;
+  margin-bottom: 0;
 }
 
 #first h1, #first p {
   padding: .5rem;
-  background-color: #fffac7;
 }
 
 #second {
   background-color: #070707;
-    background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23e2deb5' fill-opacity='0.4'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  padding-bottom: 5rem;
+  padding-top: 5rem;
+  margin-bottom: 0;
 }
 
 #third {
+  padding-top: 3rem;
   background-color: #e2deb5;
 }
 
@@ -92,6 +109,16 @@ label.label-checkbox {
 .btn-primary:hover {
   background-color: var(--btn-primary-hover-bg-color);
   border-color: var(--btn-primary-hover-border-color);
+}
+
+/* navbar */
+
+.navbar-expand-lg .navbar-collapse {
+  justify-content: flex-end;
+}
+
+.navbar-toggler {
+  background-color: #e2deb5;
 }
 
 /* INDEX */
