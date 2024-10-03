@@ -1,10 +1,8 @@
-## My food inventory
+# My food inventory
 
-# My food inventory app built for The Odin Project | NodeJS.
+## Food inventory app built for The Odin Project | NodeJS.
 
 Its main purpose is to brush up my skills in CRUD operations.
-
-[live site](https://my-inventory-production.up.railway.app/)
 
 - You can add, delete or update stored food. 
 
@@ -12,3 +10,10 @@ Its main purpose is to brush up my skills in CRUD operations.
 
 - You can also see wchich consumables are stored at fridge, freezer or cupboard.
 
+## How to run
+
+- install node
+
+- run ```npm install```
+
+- ```npm start```

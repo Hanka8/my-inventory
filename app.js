@@ -26,7 +26,9 @@ app.use('/', inventoryRoutes);
 
 //connect the database
 
-const mongoDB = process.env.SECRET_KEY;
+// const mongoDB = process.env.SECRET_KEY;
+const mongoDB =
+  "mongodb+srv://hankamaruskevicova:myInventory123@cluster0.j93jqer.mongodb.net/my-inventory?retryWrites=true&w=majority";
 
 async function main(){
   await mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
